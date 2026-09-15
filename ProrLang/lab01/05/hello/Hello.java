@@ -1,0 +1,8 @@
+package hello;
+import message.Message;
+
+public class Hello {
+    public static void hello() {
+        Message.message("hello world!!!");
+    }
+}

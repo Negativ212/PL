@@ -1,0 +1,7 @@
+package message;
+
+public class Message {
+    public static void message(String s) {
+        System.out.println(s);
+    }
+}
