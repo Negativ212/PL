@@ -26,7 +26,36 @@
 которые будут транслироваться в С++, но вызывать ошибку согласования типов в Java.*
 
 *Записанные программы сохраните в папке с номером задания. В отчет запишите пояснения к работе программ.*
+```
+#include <iostream>
+int main(){
+  int a = 2, b = 1, c =1;
+  if((a==b)+c) {
+    std::cout<<"YES";
+  }
+  else{
+    std::cout<<"NO";
+  }
+return 0;
+}
+```
+//неопределённое поведение при 0 1 0 выводит 0
+```
+public static Main{
+  public static void main(streing[] args){
+    int a = 2, b = 1, c =1;
+    if((a==b)+c) {
+      System.out.println("YES");
+    }
+    else{
+      System.out.println("NO");
+    }  
+  }
+}
+```
+//не откомпилируется ибо пытаемся к bool прибавить число
 
+//слабая типизация - пытаемся сложить или выполнить действия с разными типами которые не могут работать вместе и компилятор это пропускает
 ### Задание 4 **(1)**
 
 *Рассмотрите следующий фрагмент программы.*
@@ -35,15 +64,50 @@
 bool x = true, y = false;
 auto z = x + y;
 ```
-*Используя* **typeid**, *найдите тип переменной* **z**. *Объясните результат.*
-
+*Используя* **typeid**, *найдите типы переменных* **a** и **b**. *Объясните результат.*
+```
+#include <iostream>
+#include <typeinfo>
+bool x = true, y = false;
+auto a = x & y;
+std::cout << typeid(a).name() << std::endl;
+auto b = x && y;
+std::cout << typeid(b).name() << std::endl;
+return 0;
+```
 *Записанную программу сохраните в папке с номером задания.*
 
 ### Задание 5. **(2)**
 
 *Приведите разумные (логичные) примеры использования в 
-С++ ключевых слов* **typedef|, auto, decltype, static_cast**.
-
+С++ ключевых слов* **typedef, auto, decltype, static_cast** и оператора **sizeof**.
+```
+#include <iostream>
+int main(){
+  std::pair<double,int> x;
+  std::cout << sizeof(x) << std::endl;
+  return 0;
+}
+```
+double(8 байт) + int(4 байта) = 12 байт
+sizeof выводит 16, т.к. компилятор добавляется байты и из-за этого может что то неправльно посчитаться
+```
+#include <iostream>
+#include <typeinfo>
+int main(){
+  std::pair<double,int> x = {0.5, 2};
+  std::cout << sizeof(x) << std::endl;
+  auto y = x;
+  std::cout << typeid(y).name() << std::endl;
+  typedef std::pair<double,int> mypair;
+  mypair z;
+  std::cout << typeid(z).name() << std::endl;
+  decltype(x) u;
+  std::cout << typeid(u).name() << std::endl;
+  std::cout << static_cast<int>(x.first) << std::endl;
+  return 0;
+}
+```
 *Записанные программы сохраните в папке с номером задания. В отчет запишите пояснения к программам*.
 
 ### Задание 6 **(2)**
@@ -52,11 +116,12 @@ auto z = x + y;
 ```
 int a = -1, b = 1;
 unsigned int c = 1;
-std::cout << a*b << std::endl;
-std::cout << a*c << std::endl;
+std::cout << a*b << std::endl;//нет преобразования типов
+std::cout << a*c << std::endl;//знаковое преобразуется в беззнаковое если длина одинаковая то есть a станет беззнаковым числом.
 ```
 * *Объясните работу этой программы, используя правила неявного преобразования типов*
 * *Что произойдет, если тип* **int** *заменить на* **short**, а **unsigned int** на **unsigned short**?*
+//записать посмотреть что она выводит
 
 
 ### Задание 7 **(2)**
@@ -64,12 +129,12 @@ std::cout << a*c << std::endl;
 ```
 int x = 7, y = 4;
 long double d = 0.25;
-cout << (x / y) / d << endl;
-cout << (x / d) / y << endl;
-long a = 200000, b = 200000;
+cout << (x / y) / d << endl;//преобразование типов и будет вещественно 4.0
+cout << (x / d) / y << endl;//будет 28.0 потом 7.0
+long a = 200000, b = 200000;//тоже самое что int
 long long c = 200000;
-std::cout << (a * b) * c << std::endl;
-std::cout << a * (b * c) << std::endl;
+std::cout << (a * b) * c << std::endl;//будет непонятное число а*b будет переполнение типа и всё, но чото выведет мб, надо чекать
+std::cout << a * (b * c) << std::endl;//будет нормальный ответ
 ```
 *Почему изменения порядка действий приводит
 к изменению результата? Объясните работу этой программы, используя правила неявного преобразования типов*
@@ -100,4 +165,9 @@ x==y==z
 строки в логическое значение.*
 
 *Записанную программу сохраните в папке с номером задания.*
+```
+a= input()
+if not a:
+  print('строка пустая')
+```
 
