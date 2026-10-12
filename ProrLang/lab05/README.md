@@ -327,8 +327,9 @@ $\frac{p}{q}$, *где* $p$ *и* $q$ - *целые числа.) Напишите
 t = int(input())
 ans = []
 
-for i in range(t):
+for _ in range(t):
     p1, q1, p2, q2, p3, q3, p4, q4 = map(int, input().split())
+
     a = p1 * q2 + p2 * q1
     b = q1 * q2
     c = p3 * q4 + p4 * q3
@@ -341,7 +342,7 @@ for i in range(t):
     else:
         ans.append("0")
 
-print(" ".join(ans))
+print(*ans)
 ```
 
 ## Дополнительные задания
