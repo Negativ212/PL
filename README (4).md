@@ -20,7 +20,31 @@ int main() {
 * ```constexpr auto Pi = std::acos(x) * 2;```
 
 *Что можно сказать об этих вариантах? Проверьте, в каких вариантах объявляется константа этапа трасляции.*
+```py
+#include <iostream>
+#include <cmath>
+int main() {
+   double x = 0;
+   const auto Pi = std::acos(0) * 2;
+   std::cout << Pi << std::endl;
+   const_cast<double&>(Pi) = 3.1;
+   std::cout << Pi << std::endl;
+   return 0;
+}
+```
 
+```py
+#include <iostream>
+#include <cmath>
+int main() {
+   double x = 0;
+   const auto Pi = std::acos(x) * 2;
+   std::cout << Pi << std::endl;
+   const_cast<double&>(Pi) = 3.1;
+   std::cout << Pi << std::endl;
+   return 0;
+}
+```
 *Тексты программ разместите в папке с номером задания*
 
 
