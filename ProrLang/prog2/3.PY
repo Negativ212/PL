@@ -25,15 +25,17 @@ import math
 
 #     print(result)
 
-#3
+#4
 
-n = int(input())
-nums = list(map(int, input().split()))
+#n = int(input())
+#nums = list(map(int, input().split()))
 
-code = ""
-for x in nums:
-    xb = bin(x)[2:]   
-    yb = bin(len(xb))[2:] 
-    code += "0" * (len(yb) - 1) + yb + xb[1:]
+#code = ""
+#for x in nums:
+#    xb = bin(x)[2:]   
+#    yb = bin(len(xb))[2:] 
+#    code += "0" * (len(yb) - 1) + yb + xb[1:]
 
-print(code)
+#print(code)
+
+
