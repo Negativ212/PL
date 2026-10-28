@@ -87,6 +87,25 @@ forc(i, from, to)
 
 *Написанные программы сохраните в папку с номером задания.*
 
+#include <iostream>
+
+int main() {
+    int from = -10, to = 10;
+    {
+        int __i = from, __n = to;
+        for(const int& i=__i; i < __n; __i++) {
+            std::cout << i << ' ';
+        }
+    }
+    {
+        for (int i = from; i>to; i++){
+            std::cout << i << ' ';
+        }
+    }
+   return 0;
+}
+
+
 
 ### Задание 7 **(2)**
 
